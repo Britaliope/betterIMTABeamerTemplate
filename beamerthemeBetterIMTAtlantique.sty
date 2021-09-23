@@ -1,0 +1,27 @@
+\mode<presentation>
+
+% Requirement
+\RequirePackage{tikz}
+\RequirePackage{pifont} 
+\RequirePackage{graphicx} 
+
+\usetikzlibrary{positioning}
+
+\let\oldding\ding% Store old \ding in \oldding
+\renewcommand{\ding}[2][1]{\scalebox{#1}{\oldding{#2}}}% Scale \oldding via optional argument
+
+
+%\newcommand{\partnerlogo}{} % print second log
+\DeclareOptionBeamer{partnerlogo}{\newcommand{\partnerlogo}{#1}}
+
+\ProcessOptionsBeamer
+
+% Settings
+\useinnertheme{BetterIMTAtlantique}
+\useoutertheme{BetterIMTAtlantique}
+\usecolortheme{BetterIMTAtlantique}
+\usefonttheme{BetterIMTAtlantique}
+
+\setbeamertemplate{navigation symbols}{}
+
+\mode<all>
