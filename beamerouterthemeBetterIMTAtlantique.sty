@@ -25,6 +25,7 @@
     \insectionframefalse
 }
 
+\if@enableSectionInterframe
 \AtBeginSection[]{{%
     \insectionframetrue
 
@@ -33,9 +34,9 @@
     \end{frame}
     \insectionframefalse
 }}
+\fi
 
-
-
+\if@enableSubSectionInterframe
 \AtBeginSubsection[]{{%
     \insectionframetrue
 
@@ -44,6 +45,7 @@
     \end{frame}
     \insectionframefalse
 }}
+\fi
 
 % header and footer
 \setbeamertemplate{headline}{}
