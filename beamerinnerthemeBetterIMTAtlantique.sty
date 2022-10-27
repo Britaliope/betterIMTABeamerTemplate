@@ -5,7 +5,23 @@
 
 \setbeamertemplate{background}{
     \begin{tikzpicture}[remember picture,overlay]
-        \ifnum\thepage>1\relax%
+        \ifnum\thepage=\@titlepagenumber\relax%
+           \fill[IMTABlue](0,-8.04) -- (3.8, -4.03) -- (9.05,-9.6)--(0,-9.6) -- cycle;
+           \fill[IMTAGreen] (3.8,-4.03) -- (7.6,0) -- (11.37,0) -- (5.672,-6.028) -- cycle;
+           \fill[IMTALightBlue] (5.672,-6.028) -- (9.05,-9.6) -- (current page.south east) -- (current page.north east) -- (11.37,0) -- cycle;
+           
+           %\draw[step=0.5,thin,black] (current page.north west) grid (current page.south east);
+           %\fill[red] (1,-1) circle[radius=3pt] {}; 
+  
+            \pgfdeclareimage[interpolate=true, width=90pt]{imtatlantiquelogo}{logos/imtatlantiquelogo};
+            \node (IMTALogo) at (1.7,-1) {\pgfuseimage{imtatlantiquelogo}};
+            \ifdefined\partnerlogo
+                \pgfdeclareimage[interpolate=true, width=80pt]{partnerlogo}{\partnerlogo};
+                \node[below=0cm of IMTALogo] {\pgfuseimage{partnerlogo}};
+
+            \fi 
+ 
+        \else
             \ifinsectionframe
             
                 %\node[inner sep=0pt, text width=0cm] at (current page.west){\includegraphics[height=\paperheight,width=\paperwidth]{backgrounds/sectionpage.pdf}};
@@ -26,23 +42,7 @@
             \else
                 \fill[white,opacity=1] (0,0) rectangle(\the\paperwidth,\the\paperheight);
             \fi
-        \else
-           \fill[IMTABlue](0,-8.04) -- (3.8, -4.03) -- (9.05,-9.6)--(0,-9.6) -- cycle;
-           \fill[IMTAGreen] (3.8,-4.03) -- (7.6,0) -- (11.37,0) -- (5.672,-6.028) -- cycle;
-           \fill[IMTALightBlue] (5.672,-6.028) -- (9.05,-9.6) -- (current page.south east) -- (current page.north east) -- (11.37,0) -- cycle;
-           
-           %\draw[step=0.5,thin,black] (current page.north west) grid (current page.south east);
-           %\fill[red] (1,-1) circle[radius=3pt] {}; 
-  
-            \pgfdeclareimage[interpolate=true, width=90pt]{imtatlantiquelogo}{logos/imtatlantiquelogo};
-            \node (IMTALogo) at (1.7,-1) {\pgfuseimage{imtatlantiquelogo}};
-            \ifdefined\partnerlogo
-                \pgfdeclareimage[interpolate=true, width=80pt]{partnerlogo}{\partnerlogo};
-                \node[below=0cm of IMTALogo] {\pgfuseimage{partnerlogo}};
-
-            \fi 
-  
-        \fi
+       \fi
     \end{tikzpicture}
 }
 
@@ -75,7 +75,7 @@
         \ifx\insertdate\empty\else
              \vskip0.2cm%
             \begin{beamercolorbox}[#1]{date}
-              \usebeamerfont{author}\insertdate%
+              \usebeamerfont{date}\insertdate%
             \end{beamercolorbox}
         \fi
         \vfill
@@ -104,7 +104,7 @@
             \usebeamerfont{section title}\thesection\hspace{0.8mm}\raisebox{0.3mm}{$\bullet$\hspace{2mm}}\insertsectionhead\par
         \end{beamercolorbox}
         \vfill%
-        %\tableofcontents[hideothersubsections,sectionstyle=hide/hide]
+        % \tableofcontents[hideothersubsections,sectionstyle=hide/hide]
     \end{minipage}
 }
 
@@ -170,17 +170,16 @@
 \wd\BetterIMTA@iconbox=3em
 
 \usebeamercolor{showcase body}
-\setbox \BetterIMTA@contentbox=\hbox to\textwidth\bgroup%
+\setbox \BetterIMTA@contentbox=\hbox to \dimexpr\textwidth-\wd\BetterIMTA@iconbox-4\fboxsep\relax\bgroup%
     \vbox%
     \bgroup%
-        \hsize=\dimexpr\textwidth-\wd\BetterIMTA@iconbox-4\fboxsep\relax%
+        \hsize\dimexpr\textwidth-\wd\BetterIMTA@iconbox-4\fboxsep\relax%
         \leavevmode\ignorespaces\color{fg}%
 }
 {%
 \egroup\egroup
 \setlength{\fboxsep}{8pt}
 \savebox\BetterIMTA@contentbox{\mbox{\usebox{\BetterIMTA@contentbox}}}
-
 
 \ifdim\ht\BetterIMTA@iconbox<\ht\BetterIMTA@contentbox
      \setbox\BetterIMTA@iconbox=%

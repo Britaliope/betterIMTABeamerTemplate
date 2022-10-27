@@ -1,7 +1,8 @@
 \mode<presentation>
 
-\defbeamertemplate*{frametitle}{BetterIMTAtlantique}[1][]
+\defbeamertemplate*{frametitle}{BetterIMTAtlantique}[1][]%
 {
+    \vskip-1pt 
     \begin{beamercolorbox}[wd=\the\paperwidth,ht=1.2cm,sep=4pt]{frametitle}
         \insertframetitle
 
@@ -11,7 +12,6 @@
             \usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle
         \fi
     \end{beamercolorbox}
-         
 }
 
 
@@ -47,6 +47,13 @@
 }}
 \fi
 
+\def\myinsertslidenumber{%
+    \pgfmathparse{int(\insertframeendpage-\insertframestartpage+1)}
+    \ifnum\pgfmathresult>2
+      \symbol{\numexpr96+\insertslidenumber}%
+    \fi
+}
+
 % header and footer
 \setbeamertemplate{headline}{}
 \setbeamertemplate{footline}{
@@ -67,7 +74,7 @@
                 \usebeamerfont{date in head/foot}
                 \insertshortdate
                 \hspace*{5em}
-                \insertframenumber{} / \inserttotalframenumber
+                \hbox to 5em {\hfill\insertframenumber{}\myinsertslidenumber/\inserttotalframenumber}
                 \hspace*{.5cm}
         \end{beamercolorbox}
     }

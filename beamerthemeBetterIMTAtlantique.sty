@@ -16,6 +16,9 @@
 %\newcommand{\partnerlogo}{} % print second log
 \DeclareOptionBeamer{partnerlogo}{\newcommand{\partnerlogo}{#1}}
 
+\newcommand{\@titlepagenumber}{1}
+\DeclareOptionBeamer{titlepagenumber}{\renewcommand{\@titlepagenumber}{#1}}
+
 \newif\if@enableSectionInterframe
 \@enableSectionInterframefalse
 \DeclareOptionBeamer{enablesectioninterframe}{\@enableSectionInterframetrue}
