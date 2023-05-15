@@ -49,7 +49,7 @@
 
 \def\myinsertslidenumber{%
     \pgfmathparse{int(\insertframeendpage-\insertframestartpage+1)}
-    \ifnum\pgfmathresult>2
+    \ifnum\pgfmathresult>3
       \symbol{\numexpr96+\insertslidenumber}%
     \fi
 }
